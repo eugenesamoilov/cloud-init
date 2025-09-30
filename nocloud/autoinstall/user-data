@@ -1,0 +1,62 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: ru_RU.UTF-8
+  refresh-installer:
+    update: false
+  keyboard:
+    layout: us,ru
+    toggle: alt_shift_toggle
+    variant: ','
+  source:
+    id: ubuntu-server
+    search_drivers: false
+  network:
+    version: 2
+    ethernets:
+      ens18:
+        dhcp4: false
+        addresses:
+          - 192.168.2.2/24
+        gateway4: 192.168.2.1
+        nameservers:
+          addresses:
+            - 8.8.8.8
+            - 1.1.1.1
+  apt:
+    mirror-selection:
+      primary:
+        - uri: "http://mirror.yandex.ru/ubuntu/"
+    fallback: offline-install
+  storage:
+    layout:
+      name: lvm
+    swap:
+      size: 0
+  identity:
+    hostname: <>
+    password: <>
+    realname: <>
+    username: <>
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: true
+  codecs:
+    install: false
+  drivers:
+    install: false
+  oem:
+    install: auto
+  packages:
+  - curl
+  - vim
+  - qemu-guest-agent
+  kernel:
+    package: linux-generic
+  kernel-crash-dumps:
+    enabled: true
+  timezone: "Asia/Yakutsk"
+  updates: security
+  shutdown: reboot
+  user-data: {}
