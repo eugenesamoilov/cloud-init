@@ -1,2 +1,28 @@
 #cloud-config
-{}
+hostname: <>
+disable_root: true
+timezone: Asia/Yakutsk
+ssh_pwauth: no
+users:
+  -  name: <>
+     passwd: <>
+     groups: sudo
+     shell: /bin/bash
+     ssh_authorized_keys: []
+apt:
+  primary:
+    - arches: [default]
+      uri: http://mirror.yandex.ru/ubuntu/
+  security:
+    - arches: [default]
+      uri: http://security.ubuntu.com/ubuntu
+package_update: true
+package_upgrade: true
+package_reboot_if_required: false
+packages: []
+final_message: |
+  cloud-init has finished
+  version: $version
+  timestamp: $timestamp
+  datasource: $datasource
+  uptime: $uptime
