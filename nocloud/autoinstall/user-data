@@ -14,19 +14,20 @@ autoinstall:
   network:
     version: 2
     ethernets:
-      ens18:
+      enp44s0:
         dhcp4: false
         addresses:
-          - 192.168.2.2/24
-        gateway4: 192.168.2.1
+          - 192.168.1.2/24
+        gateway4: 192.168.1.1
         nameservers:
           addresses:
-            - 8.8.8.8
-            - 1.1.1.1
+            - 192.168.1.1
   apt:
     mirror-selection:
       primary:
         - uri: "http://mirror.yandex.ru/ubuntu/"
+      fallback:
+        - uri: "http://archive.ubuntu.com/ubuntu/"
     fallback: offline-install
   storage:
     layout:
@@ -39,7 +40,7 @@ autoinstall:
     realname: <>
     username: <>
   ssh:
-    allow-pw: true
+    allow-pw: false
     authorized-keys: []
     install-server: true
   codecs:
@@ -49,9 +50,9 @@ autoinstall:
   oem:
     install: auto
   packages:
-  - curl
   - vim
-  - qemu-guest-agent
+  - htop
+  - curl
   kernel:
     package: linux-generic
   kernel-crash-dumps:
